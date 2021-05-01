@@ -4,40 +4,43 @@
 #include <sys/wait.h>
 #include <unistd.h>
 
-void childTask() 
-{
-		char name[25];
+	void childTask() 
+	{
+		char name[20];
 
 		printf("Enter your name :");
 		scanf("%s", name);
 		printf("Your name is : %s\n",name);
 		exit(0);
-}
+	}
 
 	void parentTask()
 	{
-		printf("Job is done\n\n");
+		printf("Job is Done!\n\n");
 	}
 
     int main(void)
     {
 	int i;
 
-	    for(i=0; i<4; i++)
+	    for(i=1; i<5; i++)
 	    {
 		    pid_t pid= fork();
 
-    	if(pid==0)
-    	{
+    	    if(pid==0)
+    	    {
 		    childTask();
-	    	return (EXIT_SUCCESS);
-	    }
+	    	exit(0);
+	        }
 	
-	    else
-	    {
+	        else
+	        {
 	        wait(NULL);
-	        parentTask();
+	        
+	        }
+	        
 	    }
-
-	    }
+	    parentTask();
+	    
+return EXIT_SUCCESS;
 }
